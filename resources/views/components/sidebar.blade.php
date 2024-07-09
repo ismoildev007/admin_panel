@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nxl-item nxl-hasmenu">
-                    <a href="/admin/system_team" class="nxl-link">
+                    <a href="/admin/partner" class="nxl-link">
                         <span class="nxl-micon"><i class="feather-layout"></i></span>
                         <span class="nxl-mtext">  Hamkorlar </span><span class="nxl-arrow"></span>
                     </a>

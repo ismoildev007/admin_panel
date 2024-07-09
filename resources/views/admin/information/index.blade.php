@@ -284,7 +284,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                             <li>
-                                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                                <a class="dropdown-item" href="{{ route('information.edit', ['information' => $new->id])}}">
                                                                     <i class="feather feather-edit-3 me-3"></i>
                                                                     <span>Edit</span>
                                                                 </a>
@@ -316,10 +316,12 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                                             </li>
                                                             <li class="dropdown-divider"></li>
                                                             <li>
-                                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                                    <i class="feather feather-trash-2 me-3"></i>
-                                                                    <span>Delete</span>
-                                                                </a>
+
+                                                                <form class="dropdown-item" action="{{ route('information.destroy', $new->id) }}" method="POST" onsubmit="return confirm('Ochirishga ruxsat berasizmi')">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn" type="submit" style="border: none; background: none; cursor: pointer;"><i class="feather feather-trash-2 me-3"></i><span>Delete</span></button>
+                                                                </form>
                                                             </li>
                                                         </ul>
                                                     </div>

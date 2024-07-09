@@ -99,37 +99,37 @@
                                 </div>
                                 <div class="row mb-4 align-items-center lang-section lang-uz">
                                     <div class="col-lg-2 text-center">
-                                        <label for="descriptionInput" class="fw-semibold">Text Uz: </label>
+                                        <label for="descriptionInput" class="fw-semibold">description Uz: </label>
                                     </div>
                                     <div class="col-lg-10">
                                         <div class="input-group">
                                             <div class="input-group-text"><i class="feather-type"></i></div>
                                             <textarea class="form-control" id="myeditorinstance" cols="30" rows="5"
-                                                      placeholder="Description" name="text_uz"></textarea>
+                                                      placeholder="Description" name="description_uz"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-4 align-items-center lang-section lang-ru d-none">
                                     <div class="col-lg-2 text-center">
-                                        <label for="descriptionInput" class="fw-semibold">Text Ru: </label>
+                                        <label for="descriptionInput" class="fw-semibold">description Ru: </label>
                                     </div>
                                     <div class="col-lg-10">
                                         <div class="input-group">
                                             <div class="input-group-text"><i class="feather-type"></i></div>
                                             <textarea class="form-control" id="myeditorinstance" cols="30" rows="5"
-                                                      placeholder="Description" name="text_ru"></textarea>
+                                                      placeholder="Description" name="description_ru"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-4 align-items-center lang-section lang-en d-none">
                                     <div class="col-lg-2 text-center">
-                                        <label for="descriptionInput" class="fw-semibold">Text En: </label>
+                                        <label for="descriptionInput" class="fw-semibold">description En: </label>
                                     </div>
                                     <div class="col-lg-10">
                                         <div class="input-group">
                                             <div class="input-group-text"><i class="feather-type"></i></div>
                                             <textarea class="form-control" id="myeditorinstance" cols="30" rows="5"
-                                                      placeholder="Description" name="text_en"></textarea>
+                                                      placeholder="Description" name="description_en"></textarea>
                                         </div>
                                     </div>
                                 </div>
