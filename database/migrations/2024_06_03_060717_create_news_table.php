@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('text_uz')->nullable();
             $table->text('text_ru')->nullable();
             $table->text('text_en')->nullable();
+            $table->text('image')->nullable();
             $table->string('date')->nullable();
             $table->timestamps();
         });

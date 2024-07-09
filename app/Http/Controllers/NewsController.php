@@ -38,8 +38,15 @@ class NewsController extends Controller
             'text_uz' => 'required|string|max:255',
             'text_ru' => 'required|string|max:255',
             'text_en' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image
             'date' => 'nullable|string',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . "_" . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('news_photo',$imageName);
+            $validated['image'] = $path;
+        }
 
         $data = $validated;
 
@@ -76,9 +83,16 @@ class NewsController extends Controller
             'text_uz' => 'required|string|max:255',
             'text_ru' => 'required|string|max:255',
             'text_en' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image
             'date' => 'nullable|string',
         ]);
 
+        if ($request->hasFile('image')) {
+            Storage::delete($news->image);
+            $imageName = time() . "_" . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs("news_photo" , $imageName);
+            $validated['image'] = $path;
+        }
         $data = $validated;
 
         $news->update($data);
