@@ -13,6 +13,7 @@ class CompanyHistory extends Model
         'text_uz',
         'text_ru',
         'text_en',
+         'image',
         'date',
     ];
 }
