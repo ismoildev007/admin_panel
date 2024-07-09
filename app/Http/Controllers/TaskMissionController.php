@@ -16,8 +16,8 @@ class TaskMissionController extends Controller
      */
     public function index()
     {
-        $taskMission = TaskMission::latest()->paginate(10);
-        return view('admin.mission.index')->with('taskMission', $taskMission);
+        $taskMissions = TaskMission::latest()->paginate(10);
+        return view('admin.mission.index')->with('taskMissions', $taskMissions);
     }
 
     /**
@@ -66,41 +66,42 @@ class TaskMissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TaskMission $taskMission)
+    public function update(Request $request, $mission)
     {
-        try {
-            $validated = $request->validate([
-                'title_uz' => 'required|string|max:255',
-                'title_ru' => 'required|string|max:255',
-                'title_en' => 'required|string|max:255',
-                'description_uz' => 'nullable|string',
-                'description_ru' => 'nullable|string',
-                'description_en' => 'nullable|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'pdf' => 'nullable|mimes:pdf|max:5056',
-            ]);
+        $taskMission = TaskMission::find($mission);
+        
+        $validated = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'required|string|max:255',
+            'description_uz' => 'nullable|string',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'pdf' => 'nullable|mimes:pdf|max:5056',
+        ]);
 
-            $data = $validated;
 
-            if ($request->hasFile('image')) {
-                if ($taskMission->image) {
-                    Storage::delete($taskMission->image);
-                }
-                $data['image'] = $request->file('image')->store('post_photo');
+
+        if ($request->hasFile('image')) {
+            if ($taskMission->image) {
+                Storage::delete($taskMission->image);
             }
-            if ($request->hasFile('pdf')) {
-                if ($taskMission->pdf) {
-                    Storage::delete($taskMission->pdf);
-                }
-                $data['pdf'] = $request->file('pdf')->store('post_pdf');
-            }
-
-            $taskMission->update($data);
-
-            return redirect()->route('mission.index')->with('success', 'TaskMission updated successfully.');
-        } catch (ValidationException $e) {
-            return redirect()->back()->withErrors($e->errors())->withInput();
+            $validated['image'] = $request->file('image')->store('post_photo') ?? $taskMission->image;
         }
+
+        if ($request->hasFile('pdf')) {
+            if ($taskMission->pdf) {
+                Storage::delete($taskMission->pdf);
+            }
+            $validated['pdf'] = $request->file('pdf')->store('post_pdf') ?? $taskMission->pdf;
+        }
+        $validated['image'] = $taskMission->image;
+        $validated['pdf'] = $taskMission->pdf;
+
+        $taskMission->update($validated);
+
+        return redirect()->route('mission.index')->with('success', 'TaskMission updated successfully.');
     }
 
 
