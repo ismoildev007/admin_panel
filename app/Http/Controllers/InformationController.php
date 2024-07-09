@@ -52,7 +52,7 @@ class InformationController extends Controller
 
         Information::create($data);
 
-        return redirect()->route('information.index')->with('success', 'Partner created successfully.');
+        return redirect()->route('information.index')->with('success', 'Information created successfully.');
     }
 
     /**
@@ -100,7 +100,7 @@ class InformationController extends Controller
 
         $information->update($data);
 
-        return redirect()->route('information.index')->with('success', 'Partner updated successfully.');
+        return redirect()->route('information.index')->with('success', 'Information updated successfully.');
     }
 
     /**
