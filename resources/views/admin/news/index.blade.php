@@ -312,7 +312,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                                                 <form class="dropdown-item" action="{{ route('news.destroy', $new->id) }}" method="POST" onsubmit="return confirm('Ochirishga ruxsat berasizmi')">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" style="border: none; background: none; cursor: pointer;"><i class="feather feather-trash-2 me-3"></i><span>Delete</span></button>
+                                                                    <button type="submit" style="border: none; background: none; cursor: pointer; color:white;"><i class="feather feather-trash-2 me-3"></i><span>Delete</span></button>
                                                                 </form>
                                                             </li>
                                                         </ul>
