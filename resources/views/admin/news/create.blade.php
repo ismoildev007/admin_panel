@@ -139,7 +139,7 @@
                             </div>
                             <div class="row  mb-4 align-items-center">
                                 <div class="col-md-6 d-flex justify-content-end w-100">
-                                    <a href="{{ route('information.index') }}" type="submit" class="btn btn-light btn-default btn-squared  w-25">
+                                    <a href="{{ route('news.index') }}" type="submit" class="btn btn-light btn-default btn-squared  w-25">
                                         <i class="fa fa-arrow-left"></i>
                                         Orqaga
                                     </a>
