@@ -1,9 +1,6 @@
 <?php
-
 $lang = \Illuminate\Support\Facades\App::getLocale();
-
 ?>
-
 @extends('components.layouts.admin')
 @section('content')
 <main class="nxl-container">
@@ -249,7 +246,7 @@ $lang = \Illuminate\Support\Facades\App::getLocale();
                                             </td>
                                             <td>
                                                 <a href="leads-view.html" class="hstack gap-3">
-                                                
+
                                                     <div>
                                                         <span class="text-truncate-1-line">{!! $new->title_uz!!}</span>
                                                     </div>

@@ -15,7 +15,7 @@ class CompanyHistoryController extends Controller
     public function index()
     {
         $companyHistories = CompanyHistory::latest()->paginate(10);
-        return view('admin.companyHistory.index')->with('company_histories', $companyHistories);
+        return view('admin.companyHistory.index',compact('companyHistories'))->with('company_histories', $companyHistories);
     }
 
     /**
@@ -35,15 +35,21 @@ class CompanyHistoryController extends Controller
             'text_uz' => 'required|string',
             'text_ru' => 'required|string',
             'text_en' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'date' => 'nullable|string',
         ]);
 
         $data = $validated;
 
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('post_photo');
+        }
+
         CompanyHistory::create($data);
 
         return redirect()->route('company_history.index')->with('success', 'CompanyHistory created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -71,14 +77,23 @@ class CompanyHistoryController extends Controller
             'text_ru' => 'required|string',
             'text_en' => 'required|string',
             'date' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = $validated;
+
+        if ($request->hasFile('image')) {
+            if ($companyHistory->image) {
+                Storage::delete($companyHistory->image);
+            }
+            $data['image'] = $request->file('image')->store('post_photo');
+        }
 
         $companyHistory->update($data);
 
         return redirect()->route('company_history.index')->with('success', 'CompanyHistory updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
