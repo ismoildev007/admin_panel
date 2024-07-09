@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('text_ru')->nullable();
             $table->text('text_en')->nullable();
             $table->string('date')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

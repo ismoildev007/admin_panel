@@ -15,7 +15,7 @@ class CompanyStructureController extends Controller
     public function index()
     {
         $companyStructures = CompanyStructure::latest()->paginate(10);
-        return view('admin.companyStructure.index')->with('companyStructure', $companyStructures);
+        return view('admin.companyStructure.index',compact('companyStructures'))->with('companyStructure', $companyStructures);
     }
 
     /**
