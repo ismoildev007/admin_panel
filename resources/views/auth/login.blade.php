@@ -13,7 +13,7 @@
 {{--                    </a>--}}
 {{--                </div>--}}
 
-{{--                <form action="{{ route('authenticate') }}" method="post">--}}
+{{--                <form action="{{ route('authenticate" method="post">--}}
 {{--                    @csrf--}}
 
 {{--                    <div class="form-group mb-3">--}}
@@ -79,20 +79,20 @@
     <link rel="shortcut icon" href="/assets/images/impex.svg">
     <!--! END: Favicon-->
     <!--! BEGIN: Bootstrap CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
     <!--! END: Bootstrap CSS-->
     <!--! BEGIN: Vendors CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/select2-theme.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2-theme.min.css">
 
     <!-- For employees CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/jquery.steps.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/quill.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/vendors/css/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/jquery.steps.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/quill.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/datepicker.min.css">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
