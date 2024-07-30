@@ -43,6 +43,16 @@ class VehicleController extends Controller
 
         return $this->handleResponse($response);
     }
+    public function fetchDriverSummary(Request $request)
+    {
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Authorization' => "Bearer {$this->apiToken}",
+        ])->post('https://api.e-osgo.uz/api/provider/driver-summary', $request->all());
+
+        return $this->handleResponse($response);
+    }
 
     protected function handleResponse($response)
     {
