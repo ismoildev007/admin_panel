@@ -12,36 +12,55 @@
     <input type="text" id="techPassportSeria" name="techPassportSeria">
     <label for="techPassportNumber">Tech Passport Number:</label>
     <input type="text" id="techPassportNumber" name="techPassportNumber">
-    <label for="stateNumber">State Number:</label>
-    <input type="text" id="stateNumber" name="stateNumber">
+    <label for="govNumber">State Number:</label>
+    <input type="text" id="govNumber" name="govNumber">
     <button type="button" onclick="fetchVehicleInfo()">Fetch Info</button>
 </form>
+
+<div id="vehicle-info">
+    <!-- Bu yerga natijalar ko'rsatiladi -->
+</div>
 
 <script>
     function fetchVehicleInfo() {
         const techPassportSeria = document.getElementById('techPassportSeria').value;
         const techPassportNumber = document.getElementById('techPassportNumber').value;
-        const stateNumber = document.getElementById('stateNumber').value;
+        const govNumber = document.getElementById('govNumber').value;
 
-        axios.get('/fetch-vehicle-info', {
-            params: {
-                techPassportSeria: techPassportSeria,
-                techPassportNumber: techPassportNumber,
-                stateNumber: stateNumber
-            },
-            headers: {
-                'Authorization': 'Bearer YOUR_ACCESS_TOKEN' // Agar API token talab qilsa
-            }
+        axios.post('/api/fetch-vehicle-info', {
+            techPassportSeria: techPassportSeria,
+            techPassportNumber: techPassportNumber,
+            govNumber: govNumber
         })
             .then(response => {
-                console.log(response.data);
-                // Natijalarni ko'rsatish uchun qo'shimcha kod kiriting
+                const data = response.data.result;
+                displayVehicleInfo(data);
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
     }
 
+    function displayVehicleInfo(data) {
+        const vehicleInfoDiv = document.getElementById('vehicle-info');
+        vehicleInfoDiv.innerHTML = `
+                <h2>Vehicle Info</h2>
+                <p><strong>Owner:</strong> ${data.owner}</p>
+                <p><strong>Model Name:</strong> ${data.modelName}</p>
+                <p><strong>Gov Number:</strong> ${data.govNumber}</p>
+                <p><strong>Vehicle Color:</strong> ${data.vehicleColor}</p>
+                <p><strong>Engine Number:</strong> ${data.engineNumber}</p>
+                <p><strong>Body Number:</strong> ${data.bodyNumber}</p>
+                <p><strong>Issue Year:</strong> ${data.issueYear}</p>
+                <p><strong>Tech Passport Issue Date:</strong> ${data.techPassportIssueDate}</p>
+                <p><strong>Division:</strong> ${data.division}</p>
+                <p><strong>Full Weight:</strong> ${data.fullWeight}</p>
+                <p><strong>Empty Weight:</strong> ${data.emptyWeight}</p>
+                <p><strong>Fuel Type:</strong> ${data.fuelType}</p>
+                <p><strong>Seats:</strong> ${data.seats}</p>
+                <p><strong>Stands:</strong> ${data.stands}</p>
+            `;
+    }
 </script>
 </body>
 </html>
