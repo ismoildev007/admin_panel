@@ -4,36 +4,47 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http; // Use Laravel's HTTP client
+use Illuminate\Support\Facades\Http;
 
 class VehicleController extends Controller
 {
+    protected $apiToken = 'YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA';
+
     public function fetchVehicleInfo(Request $request)
     {
-        // Perform the HTTP request using Laravel's HTTP client
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA',
+            'Authorization' => "Bearer {$this->apiToken}",
         ])->post('https://api.e-osgo.uz/api/provider/vehicle', $request->all());
 
-        // Convert response to JSON
-        $responseBody = $response->json();
+        // Check if response is successful
+        if ($response->failed()) {
+            return response()->json([
+                'error' => $response->json('error', 'Unknown error'),
+                'error_description' => $response->json('error_description', 'No description available'),
+            ], $response->status());
+        }
 
-        return response()->json($responseBody);
+        return response()->json($response->json());
     }
+
     public function fetchKadaster(Request $request)
     {
-        // Perform the HTTP request using Laravel's HTTP client
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA',
+            'Authorization' => "Bearer {$this->apiToken}",
         ])->post('https://erspapi.e-osgo.uz/api/provider/cadaster', $request->all());
 
-        // Convert response to JSON
-        $responseBody = $response->json();
+        // Check if response is successful
+        if ($response->failed()) {
+            return response()->json([
+                'error' => $response->json('error', 'Unknown error'),
+                'error_description' => $response->json('error_description', 'No description available'),
+            ], $response->status());
+        }
 
-        return response()->json($responseBody);
+        return response()->json($response->json());
     }
 }
