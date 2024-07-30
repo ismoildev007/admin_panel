@@ -10,7 +10,6 @@ class VehicleController extends Controller
 {
     public function fetchVehicleInfo(Request $request)
     {
-        dd($request->all());
         // Inputlarni oling
         $techPassportSeria = $request->input('techPassportSeria');
         $techPassportNumber = $request->input('techPassportNumber');
@@ -21,7 +20,7 @@ class VehicleController extends Controller
 
         // Tashqi API'ga so'rov yuborish
         try {
-            $response = $client->request('POST', 'https://api.e-osgo.uz/api/provider/vehicle', [
+            $response = $client->request('GET', 'https://api.e-osgo.uz/api/provider/vehicle', [
 //                dd($request->all());
                 'query' => [
                     'techPassportSeria' => $techPassportSeria,
