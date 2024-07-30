@@ -35,6 +35,10 @@
     <button type="button" onclick="fetchOtherInfo()">Fetch Other Info</button>
 </div>
 
+<div id="driver-info" style="display:none;">
+    <!-- Bu yerda boshqa ma'lumotlar ko'rsatiladi -->
+</div>
+
 <script>
     function fetchVehicleInfo() {
         const techPassportSeria = document.getElementById('techPassportSeria').value;
@@ -89,18 +93,46 @@
         const input1 = document.getElementById('input1').value;
         const input2 = document.getElementById('input2').value;
 
-        axios.post('api/fetch-driver-summary', {
+        axios.post('/api/fetch-driver-summary', {
             pinfl: pinfl,
             passportSeries: input1,
             passportNumber: input2
         })
             .then(response => {
-                console.log('Other info:', response.data);
-                // Bu yerda boshqa ma'lumotlarni ko'rsatish uchun qo'shimcha kod kiriting
+                const data = response.data.result;
+                displayDriverInfo(data);
             })
             .catch(error => {
                 console.error('There was an error fetching other info!', error);
             });
+    }
+
+    function displayDriverInfo(data) {
+        const driverInfoDiv = document.getElementById('driver-info');
+        const driverInfo = data.DriverInfo;
+        const discountInfo = data.DiscountInfo;
+        const coefficient = data.coefficient;
+
+        driverInfoDiv.innerHTML = `
+            <h2>Driver Info</h2>
+            <p><strong>License Number:</strong> ${driverInfo.licenseNumber}</p>
+            <p><strong>License Seria:</strong> ${driverInfo.licenseSeria}</p>
+            <p><strong>Issue Date:</strong> ${driverInfo.issueDate}</p>
+            <p><strong>Owner:</strong> ${driverInfo.pOwner}</p>
+            <p><strong>Owner Date:</strong> ${driverInfo.pOwnerDate}</p>
+            <h3>License Categories</h3>
+            ${driverInfo.modelDLNew.map(category => `
+                <p><strong>Category:</strong> ${category.pCategory}</p>
+                <p><strong>Begin Date:</strong> ${category.pBegin}</p>
+                <p><strong>End Date:</strong> ${category.pEnd}</p>
+            `).join('')}
+            <h3>Discount Info</h3>
+            <p><strong>Is Pensioner:</strong> ${discountInfo.isPensioner}</p>
+            <h3>Coefficient</h3>
+            <p><strong>Coefficient:</strong> ${coefficient}</p>
+        `;
+
+        driverInfoDiv.style.display = 'block';
     }
 </script>
 </body>
