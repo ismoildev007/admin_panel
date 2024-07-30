@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\Api\VehicleController;
 
-Route::get('/fetch-vehicle-info', [VehicleController::class, 'fetchVehicleInfo']);
+Route::post('/fetch-vehicle-info', [VehicleController::class, 'fetchVehicleInfo']);
 
