@@ -21,6 +21,7 @@ class VehicleController extends Controller
         // Tashqi API'ga so'rov yuborish
         try {
             $response = $client->request('POST', 'https://api.e-osgo.uz/api/provider/vehicle', [
+                dd($request->all());
                 'form_params' => [
                     'techPassportSeria' => $techPassportSeria,
                     'techPassportNumber' => $techPassportNumber,
