@@ -9,11 +9,11 @@
 <body>
 <form id="vehicle-form">
     <label for="techPassportSeria">Tech Passport Seria:</label>
-    <input type="text" id="techPassportSeria" name="techPassportSeria"  style="text-transform: uppercase">
+    <input type="text" id="techPassportSeria" name="techPassportSeria">
     <label for="techPassportNumber">Tech Passport Number:</label>
-    <input type="text" id="techPassportNumber" name="techPassportNumber"  style="text-transform: uppercase">
+    <input type="text" id="techPassportNumber" name="techPassportNumber">
     <label for="govNumber">State Number:</label>
-    <input type="text" id="govNumber" name="govNumber"  style="text-transform: uppercase">
+    <input type="text" id="govNumber" name="govNumber">
     <button type="button" onclick="fetchVehicleInfo()">Fetch Info</button>
 </form>
 
@@ -24,13 +24,13 @@
 <div id="additional-info" style="display:none;">
     <h3>Additional Info</h3>
     <label for="pinfl">PINFL:</label>
-    <input type="text" id="pinfl" name="pinfl" readonly style="text-transform: uppercase">
+    <input type="text" id="pinfl" name="pinfl" readonly>
 
     <!-- Ikkita yangi input maydoni -->
     <label for="input1">Input 1:</label>
-    <input type="text" id="input1" name="input1" style="text-transform: uppercase">
+    <input type="text" id="input1" name="input1">
     <label for="input2">Input 2:</label>
-    <input type="text" id="input2" name="input2" style="text-transform: uppercase">
+    <input type="text" id="input2" name="input2">
 
     <button type="button" onclick="fetchOtherInfo()">Fetch Other Info</button>
 </div>
