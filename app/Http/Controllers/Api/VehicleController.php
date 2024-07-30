@@ -34,6 +34,7 @@ class VehicleController extends Controller
 
     public function fetchDriverLicense(Request $request)
     {
+        dd(request()->all());
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/x-www-form-urlencoded',
