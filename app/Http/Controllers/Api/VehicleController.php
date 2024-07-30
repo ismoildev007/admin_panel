@@ -53,6 +53,7 @@ class VehicleController extends Controller
                     'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA', // E-OSGO API tokeni bilan almashtiring
                 ],
             ]);
+            dd($response);
 
             // So'rov natijalarini oling
             $vehicleInfo = json_decode($response->getBody()->getContents(), true);
