@@ -21,8 +21,7 @@ class VehicleController extends Controller
         // Tashqi API'ga so'rov yuborish
         try {
             $response = $client->request('POST', 'https://api.e-osgo.uz/api/provider/vehicle', [
-//                dd($request->all());
-                'query' => [
+                'form_params' => [
                     'techPassportSeria' => $techPassportSeria,
                     'techPassportNumber' => $techPassportNumber,
                     'stateNumber' => $stateNumber,
@@ -34,7 +33,7 @@ class VehicleController extends Controller
                     'grant_type' => 'password',
                     'username' => 'impex_insurance',
                     'password' => 'uJzJ"[w^JN6mr%9tL2CXnDK5f84.m5Ux',
-                    'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA', // E-OSGO API tokeni bilan almashtiring
+                    'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA',
                 ],
             ]);
 
@@ -46,7 +45,7 @@ class VehicleController extends Controller
 
         } catch (\Exception $e) {
             // Xatolikni qaytarish
-            return response()->json(['error' => $e->getMessage()], 500); // 500 Internal Server Error qaytarish
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
