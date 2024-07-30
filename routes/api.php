@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-use App\Http\Controllers\Api\VehicleController;
-
-Route::get('/fetch-vehicle-info', [VehicleController::class, 'fetchVehicleInfo']);
-
+// Vehicle API marshruti
+Route::post('/fetch-vehicle-info', [VehicleController::class, 'fetchVehicleInfo']);

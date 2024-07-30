@@ -28,6 +28,7 @@ class VehicleController extends Controller
                 ],
                 'headers' => [
                     'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
                     'client_id' => '5_529o76r9bz0ggcgg8wcoc0kococ4wc0so8o8k48k40o00080oc',
                     'client_secret' => '4kmk6cucu2o0kcswg4k8c0s000k4koo0ws0c8w40scs8ggwc80',
                     'grant_type' => 'password',
