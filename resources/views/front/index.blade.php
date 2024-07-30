@@ -59,6 +59,7 @@
                 <p><strong>Fuel Type:</strong> ${data.fuelType}</p>
                 <p><strong>Seats:</strong> ${data.seats}</p>
                 <p><strong>Stands:</strong> ${data.stands}</p>
+                <p><strong>PNFL</strong> ${data.pnfl}</p>
             `;
     }
 </script>
