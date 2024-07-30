@@ -13,7 +13,7 @@ class VehicleController extends Controller
         // Inputlarni oling
         $techPassportSeria = $request->input('techPassportSeria');
         $techPassportNumber = $request->input('techPassportNumber');
-        $stateNumber = $request->input('stateNumber');
+        $govNumber = $request->input('govNumber');
 
         // Guzzle mijozini yarating
         $client = new Client();
@@ -24,7 +24,7 @@ class VehicleController extends Controller
                 'form_params' => [
                     'techPassportSeria' => $techPassportSeria,
                     'techPassportNumber' => $techPassportNumber,
-                    'stateNumber' => $stateNumber,
+                    'govNumber' => $govNumber,
                     'client_id' => '5_529o76r9bz0ggcgg8wcoc0kococ4wc0so8o8k48k40o00080oc',
                     'client_secret' => '4kmk6cucu2o0kcswg4k8c0s000k4koo0ws0c8w40scs8ggwc80',
                     'grant_type' => 'password',
