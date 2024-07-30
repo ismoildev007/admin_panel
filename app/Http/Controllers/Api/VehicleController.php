@@ -25,15 +25,15 @@ class VehicleController extends Controller
                     'techPassportSeria' => $techPassportSeria,
                     'techPassportNumber' => $techPassportNumber,
                     'stateNumber' => $stateNumber,
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
                     'client_id' => '5_529o76r9bz0ggcgg8wcoc0kococ4wc0so8o8k48k40o00080oc',
                     'client_secret' => '4kmk6cucu2o0kcswg4k8c0s000k4koo0ws0c8w40scs8ggwc80',
                     'grant_type' => 'password',
                     'username' => 'impex_insurance',
                     'password' => 'uJzJ"[w^JN6mr%9tL2CXnDK5f84.m5Ux',
+                ],
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
                     'Authorization' => 'Bearer YjY3NzI3ZmRmZGJjNWE3ZTc1MTkzZTAzMjIwZjk2YjFlZmE5NjkxZWU4YWJmOTU3NjQyOWFiNDljMzI1YmZmZA',
                 ],
             ]);
@@ -50,6 +50,3 @@ class VehicleController extends Controller
         }
     }
 }
-
-
-
