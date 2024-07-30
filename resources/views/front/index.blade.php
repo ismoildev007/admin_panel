@@ -25,6 +25,13 @@
     <h3>Additional Info</h3>
     <label for="pinfl">PINFL:</label>
     <input type="text" id="pinfl" name="pinfl" readonly>
+
+    <!-- Ikkita yangi input maydoni -->
+    <label for="input1">Input 1:</label>
+    <input type="text" id="input1" name="input1">
+    <label for="input2">Input 2:</label>
+    <input type="text" id="input2" name="input2">
+
     <button type="button" onclick="fetchOtherInfo()">Fetch Other Info</button>
 </div>
 
@@ -79,9 +86,13 @@
 
     function fetchOtherInfo() {
         const pinfl = document.getElementById('pinfl').value;
+        const input1 = document.getElementById('input1').value;
+        const input2 = document.getElementById('input2').value;
 
         axios.post('/api/fetch-driver-license', {
-            pinfl: pinfl
+            pinfl: pinfl,
+            input1: input1,
+            input2: input2
         })
             .then(response => {
                 console.log('Other info:', response.data);
