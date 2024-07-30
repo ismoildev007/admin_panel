@@ -39,6 +39,12 @@ class VehicleController extends Controller
 
         // Check if response is successful
         if ($response->failed()) {
+            // Log response body for debugging
+            \Log::error('Kadaster API error', [
+                'status' => $response->status(),
+                'response' => $response->body(),
+            ]);
+
             return response()->json([
                 'error' => $response->json('error', 'Unknown error'),
                 'error_description' => $response->json('error_description', 'No description available'),
