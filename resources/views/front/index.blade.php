@@ -89,10 +89,10 @@
         const input1 = document.getElementById('input1').value;
         const input2 = document.getElementById('input2').value;
 
-        axios.post('/api/fetch-driver-license', {
+        axios.post('api/fetch-driver-summary', {
             pinfl: pinfl,
-            input1: input1,
-            input2: input2
+            passportSeries: input1,
+            passportNumber: input2
         })
             .then(response => {
                 console.log('Other info:', response.data);
