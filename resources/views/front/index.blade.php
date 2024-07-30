@@ -21,6 +21,13 @@
     <!-- Bu yerga natijalar ko'rsatiladi -->
 </div>
 
+<div id="additional-info" style="display:none;">
+    <h3>Additional Info</h3>
+    <label for="pinfl">PINFL:</label>
+    <input type="text" id="pinfl" name="pinfl" readonly>
+    <button type="button" onclick="fetchOtherInfo()">Fetch Other Info</button>
+</div>
+
 <script>
     function fetchVehicleInfo() {
         const techPassportSeria = document.getElementById('techPassportSeria').value;
@@ -35,6 +42,7 @@
             .then(response => {
                 const data = response.data.result;
                 displayVehicleInfo(data);
+                showAdditionalInfo(data.pinfl);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -59,8 +67,29 @@
                 <p><strong>Fuel Type:</strong> ${data.fuelType}</p>
                 <p><strong>Seats:</strong> ${data.seats}</p>
                 <p><strong>Stands:</strong> ${data.stands}</p>
-                <p><strong>PNFL</strong> ${data.pinfl}</p>
+                <p><strong>PNFL:</strong> ${data.pinfl}</p>
             `;
+    }
+
+    function showAdditionalInfo(pinfl) {
+        const pinflInput = document.getElementById('pinfl');
+        pinflInput.value = pinfl;
+        document.getElementById('additional-info').style.display = 'block';
+    }
+
+    function fetchOtherInfo() {
+        const pinfl = document.getElementById('pinfl').value;
+
+        axios.post('/api/fetch-driver-license', {
+            pinfl: pinfl
+        })
+            .then(response => {
+                console.log('Other info:', response.data);
+                // Bu yerda boshqa ma'lumotlarni ko'rsatish uchun qo'shimcha kod kiriting
+            })
+            .catch(error => {
+                console.error('There was an error fetching other info!', error);
+            });
     }
 </script>
 </body>
