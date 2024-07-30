@@ -18,15 +18,7 @@ class VehicleController extends Controller
             'Authorization' => "Bearer {$this->apiToken}",
         ])->post('https://api.e-osgo.uz/api/provider/vehicle', $request->all());
 
-        // Check if response is successful
-        if ($response->failed()) {
-            return response()->json([
-                'error' => $response->json('error', 'Unknown error'),
-                'error_description' => $response->json('error_description', 'No description available'),
-            ], $response->status());
-        }
-
-        return response()->json($response->json());
+        return $this->handleResponse($response);
     }
 
     public function fetchKadaster(Request $request)
@@ -37,8 +29,28 @@ class VehicleController extends Controller
             'Authorization' => "Bearer {$this->apiToken}",
         ])->post('https://erspapi.e-osgo.uz/api/provider/cadaster', $request->all());
 
-        // Check if response is successful
+        return $this->handleResponse($response);
+    }
+
+    public function fetchDriverLicense(Request $request)
+    {
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Authorization' => "Bearer {$this->apiToken}",
+        ])->post('https://api.e-osgo.uz/api/provider/driver-license', $request->all());
+
+        return $this->handleResponse($response);
+    }
+
+    protected function handleResponse($response)
+    {
         if ($response->failed()) {
+            \Log::error('API Request Failed', [
+                'status' => $response->status(),
+                'response' => $response->body(),
+            ]);
+
             return response()->json([
                 'error' => $response->json('error', 'Unknown error'),
                 'error_description' => $response->json('error_description', 'No description available'),
