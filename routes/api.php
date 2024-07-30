@@ -19,5 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 // Vehicle API marshruti
 Route::post('/fetch-vehicle-info', [VehicleController::class, 'fetchVehicleInfo']);
+
+
