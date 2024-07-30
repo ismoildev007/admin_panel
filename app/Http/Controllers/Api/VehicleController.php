@@ -10,7 +10,6 @@ class VehicleController extends Controller
 {
     public function fetchVehicleInfo(Request $request)
     {
-        dd($request->all());
         // Inputlarni oling
         $techPassportSeria = $request->input('techPassportSeria');
         $techPassportNumber = $request->input('techPassportNumber');
