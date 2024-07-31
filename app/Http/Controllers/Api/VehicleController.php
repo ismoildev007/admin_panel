@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 
 class VehicleController extends Controller
 {
@@ -31,7 +33,7 @@ class VehicleController extends Controller
         ])->post('https://erspapi.e-osgo.uz/api/provider/cadaster', $request->all());
 
         return $this->handleResponse($response);
-    } 
+    }
 
     public function fetchDriverLicense(Request $request)
     {
@@ -65,14 +67,63 @@ class VehicleController extends Controller
         return $this->handleResponse($response);
     }
 
-    public function fetchPerson(Request $request){
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => "Bearer {$this->apiToken}",
-        ])->post('https://api.e-osgo.uz/api/provider/pinfl', $request->all());
+    public function fetchPerson(Request $request)
+    {
+        // Validate incoming request data
+        $validator = Validator::make($request->all(), [
+            'senderPinfl' => 'required|string',
+            'document' => 'required|string',
+            'birthDate' => 'required|date_format:Y-m-d', // Validate date format
+            'isConsent' => 'required|boolean',
+        ]);
 
-        return $this->handleResponse($response);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        try {
+            // Generate a transaction ID using the current timestamp in milliseconds
+            $transactionId = Carbon::now()->valueOf();
+
+            // Prepare the request data
+            $info = [
+                'transactionId' => $transactionId,
+                'senderPinfl' => $request->input('senderPinfl'),
+                'document' => $request->input('document'),
+                'birthDate' => $request->input('birthDate'),
+                'isConsent' => $request->input('isConsent'),
+            ];
+
+            // Make the HTTP POST request
+            $response = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Authorization' => "Bearer {$this->apiToken}",
+            ])->post('https://api.e-osgo.uz/api/provider/passport-birth-date-v2', $info);
+
+            // Check for successful response
+            if ($response->successful()) {
+                return $this->handleResponse($response);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'API request failed',
+                    'status' => $response->status(),
+                    'error' => $response->json(),
+                ], $response->status());
+            }
+        } catch (\Exception $e) {
+            // Handle any exceptions that occur during the HTTP request
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while processing your request.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
     protected function handleResponse($response)
     {
@@ -90,6 +141,4 @@ class VehicleController extends Controller
 
         return response()->json($response->json());
     }
-
-    
 }
