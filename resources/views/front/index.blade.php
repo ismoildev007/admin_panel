@@ -9,11 +9,11 @@
 <body>
 <form id="vehicle-form">
     <label for="techPassportSeria">Tech Passport Seria:</label>
-    <input type="text" id="techPassportSeria" name="techPassportSeria">
+    <input type="text" id="techPassportSeria" name="techPassportSeria" value="AAF">
     <label for="techPassportNumber">Tech Passport Number:</label>
-    <input type="text" id="techPassportNumber" name="techPassportNumber">
+    <input type="text" id="techPassportNumber" name="techPassportNumber" value="4250550">
     <label for="govNumber">State Number:</label>
-    <input type="text" id="govNumber" name="govNumber">
+    <input type="text" id="govNumber" name="govNumber" value="01M717KA">
     <button type="button" onclick="fetchVehicleInfo()">Fetch Info</button>
 </form>
 
@@ -28,9 +28,9 @@
 
     <!-- Ikkita yangi input maydoni -->
     <label for="input1">Input 1:</label>
-    <input type="text" id="input1" name="input1">
+    <input type="text" id="input1" name="input1" value="AA">
     <label for="input2">Input 2:</label>
-    <input type="text" id="input2" name="input2">
+    <input type="text" id="input2" name="input2" value="6194736">
 
     <button type="button" onclick="fetchOtherInfo()">Fetch Other Info</button>
 </div>
