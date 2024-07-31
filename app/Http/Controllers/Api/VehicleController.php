@@ -31,7 +31,7 @@ class VehicleController extends Controller
         ])->post('https://erspapi.e-osgo.uz/api/provider/cadaster', $request->all());
 
         return $this->handleResponse($response);
-    }
+    } 
 
     public function fetchDriverLicense(Request $request)
     {
@@ -64,6 +64,16 @@ class VehicleController extends Controller
 
         return $this->handleResponse($response);
     }
+
+    public function fetchPerson(Request $request){
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Authorization' => "Bearer {$this->apiToken}",
+        ])->post('https://api.e-osgo.uz/api/provider/pinfl', $request->all());
+
+        return $this->handleResponse($response);
+    }
     protected function handleResponse($response)
     {
         if ($response->failed()) {
@@ -80,4 +90,6 @@ class VehicleController extends Controller
 
         return response()->json($response->json());
     }
+
+    
 }
