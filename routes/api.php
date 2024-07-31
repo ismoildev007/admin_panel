@@ -25,5 +25,6 @@ Route::post('/fetch-kadaster', [VehicleController::class, 'fetchKadaster']);
 Route::post('/fetch-driver-license', [VehicleController::class, 'fetchDriverLicense']);
 Route::post('/fetch-driver-summary', [VehicleController::class, 'fetchDriverSummary']);
 Route::post('/fetch-inn-info', [VehicleController::class, 'fetchInnInfo']);
+Route::post('/fetch-person-info', [VehicleController::class, 'fetchPerson']);
 
 
